@@ -2,7 +2,9 @@
   background-color: #fff;
   margin: 50px auto 0 auto;
   width: 800px;
-  padding-top: 10px;
+  padding-top: 20px;
+  border-radius: 5px;
+  text-indent: 20px;
 }
 
 @media (max-width: 850px) {
