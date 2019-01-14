@@ -1,5 +1,6 @@
 import React from "react";
 import Technologies from "./Technologies/Technologies";
+import styles from "./WelcomeScreen.module.css";
 
 const welcomeScreen = props => (
   <>
@@ -9,6 +10,7 @@ const welcomeScreen = props => (
       technologies={props.technologies}
       technologyChecked={props.technologyChecked}
     />
+    <button className={styles.StartBtn}>Start</button>
   </>
 );
 

@@ -11,6 +11,5 @@
 
 .App-main {
   background-color: #eee;
-  height: 75vh;
-  overflow: hidden;
+  height: 100%;
 }
