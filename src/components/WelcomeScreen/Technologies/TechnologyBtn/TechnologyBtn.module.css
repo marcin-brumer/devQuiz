@@ -2,6 +2,7 @@
   padding: 20px 0;
   border-top: 1px solid #eee;
   cursor: pointer;
+  color: rgba(0, 0, 0, 0.2);
 }
 
 .TechnologyBtn:hover {
@@ -9,5 +10,6 @@
 }
 
 .Checked {
-  background-color: green;
+  color: rgba(0, 0, 0, 1);
+  font-weight: 600;
 }
