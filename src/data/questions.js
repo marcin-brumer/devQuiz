@@ -1,4 +1,4 @@
-export const html = [
+const HTML = [
   {
     question:
       "If you have a page of search results and want to highlight the search term, what HTML tag would you use?",
@@ -158,7 +158,7 @@ export const html = [
   }
 ];
 
-export const css = [
+const CSS = [
   {
     question: "Which of these is NOT correct float property?",
     answers: ["auto", "none", "left", "right"],
@@ -322,3 +322,5 @@ export const css = [
     correct: 1
   }
 ];
+
+module.exports = { HTML, CSS };

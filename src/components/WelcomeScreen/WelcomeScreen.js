@@ -10,7 +10,9 @@ const welcomeScreen = props => (
       technologies={props.technologies}
       technologyChecked={props.technologyChecked}
     />
-    <button className={styles.StartBtn}>Start</button>
+    <button className={styles.StartBtn} onClick={props.gameStarted}>
+      Start
+    </button>
   </>
 );
 
