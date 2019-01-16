@@ -56,6 +56,7 @@ class Game extends Component {
         <Quiz
           questions={this.state.questions}
           questionId={this.state.questionId}
+          totalQuestions={this.state.totalQuestions}
         />
       );
     } else {
