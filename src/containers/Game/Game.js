@@ -1,9 +1,10 @@
 import React, { Component } from "react";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import questionsData from "../../data/questions";
+import Quiz from "../../components/Quiz/Quiz";
 import styles from "./Game.module.css";
 
-class Quiz extends Component {
+class Game extends Component {
   state = {
     technologies: {
       HTML: false,
@@ -12,7 +13,7 @@ class Quiz extends Component {
     },
     questions: [],
     totalQuestions: 20,
-    questionId: 1,
+    questionId: 0,
     score: 0,
     phase: "welcomeScreen"
   };
@@ -50,6 +51,13 @@ class Quiz extends Component {
           gameStarted={this.startGameHandler}
         />
       );
+    } else if (this.state.phase === "quiz") {
+      return (
+        <Quiz
+          questions={this.state.questions}
+          questionId={this.state.questionId}
+        />
+      );
     } else {
       return null;
     }
@@ -60,4 +68,4 @@ class Quiz extends Component {
   }
 }
 
-export default Quiz;
+export default Game;
