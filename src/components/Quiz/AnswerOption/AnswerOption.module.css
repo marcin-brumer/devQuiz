@@ -1,0 +1,10 @@
+.AnswerOption {
+  padding: 20px;
+  font-size: 18px;
+  border-top: 1px solid #eee;
+  cursor: pointer;
+}
+
+.AnswerOption:hover {
+  background-color: #e7efff;
+}
