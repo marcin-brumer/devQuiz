@@ -8,3 +8,7 @@
 .AnswerOption:hover {
   background-color: #e7efff;
 }
+
+.Correct {
+  background-color: green;
+}

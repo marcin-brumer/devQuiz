@@ -8,8 +8,9 @@ const quiz = props => {
   const answerOptions = currentQuestion.answers.map((answer, index) => {
     return (
       <AnswerOption
-        key={index}
+        key={answer}
         text={`${String.fromCharCode(index + 65)}. ${answer}`}
+        clicked={props.answerSelected(index)}
       />
     );
   });
