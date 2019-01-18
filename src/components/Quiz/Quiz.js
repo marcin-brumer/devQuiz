@@ -22,7 +22,7 @@ const quiz = props => {
         totalQuestions={props.totalQuestions}
       />
       <Question text={currentQuestion.question} />
-      <div style={{ borderBottom: "1px solid #eee" }}>{answerOptions}</div>
+      <div>{answerOptions}</div>
     </>
   );
 };

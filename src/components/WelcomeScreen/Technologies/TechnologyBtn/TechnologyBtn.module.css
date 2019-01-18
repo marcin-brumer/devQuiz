@@ -1,6 +1,8 @@
 .TechnologyBtn {
-  padding: 20px;
-  border-top: 1px solid #eee;
+  padding: 20px 15px;
+  border: 2px solid #eee;
+  border-radius: 5px;
+  margin: 5px;
   cursor: pointer;
   color: rgba(0, 0, 0, 0.2);
 }

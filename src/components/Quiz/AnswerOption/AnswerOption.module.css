@@ -1,14 +1,12 @@
 .AnswerOption {
-  padding: 20px;
+  padding: 20px 15px;
+  border: 2px solid #eee;
+  border-radius: 5px;
+  margin: 5px;
   font-size: 18px;
-  border-top: 1px solid #eee;
   cursor: pointer;
 }
 
 .AnswerOption:hover {
   background-color: #e7efff;
-}
-
-.Correct {
-  background-color: green;
 }
