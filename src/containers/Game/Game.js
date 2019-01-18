@@ -56,8 +56,12 @@ class Game extends Component {
 
       // Wait some time for UX
       setTimeout(() => {
-        this.setState({ score: oldScore + 1, questionId: questionId + 1 });
-        parentNode.style.pointerEvents = "auto";
+        if (this.state.questionId <= this.state.totalQuestions - 2) {
+          this.setState({ score: oldScore + 1, questionId: questionId + 1 });
+          parentNode.style.pointerEvents = "auto";
+        } else {
+          this.setState({ phase: "result" });
+        }
       }, 1000);
     } else {
       // Prevent other answers from being clicked
@@ -67,8 +71,12 @@ class Game extends Component {
 
       // Wait some time for UX
       setTimeout(() => {
-        this.setState({ questionId: questionId + 1 });
-        parentNode.style.pointerEvents = "auto";
+        if (this.state.questionId <= this.state.totalQuestions - 2) {
+          this.setState({ questionId: questionId + 1 });
+          parentNode.style.pointerEvents = "auto";
+        } else {
+          this.setState({ phase: "result" });
+        }
       }, 1000);
     }
   };
