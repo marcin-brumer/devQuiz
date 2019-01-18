@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
+import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import questionsData from "../../data/questions";
 import Quiz from "../../components/Quiz/Quiz";
 import styles from "./Game.module.css";
@@ -12,7 +13,7 @@ class Game extends Component {
       JavaScript: false
     },
     questions: [],
-    totalQuestions: 20,
+    totalQuestions: 3,
     questionId: 0,
     score: 0,
     phase: "welcomeScreen"
@@ -60,7 +61,7 @@ class Game extends Component {
           this.setState({ score: oldScore + 1, questionId: questionId + 1 });
           parentNode.style.pointerEvents = "auto";
         } else {
-          this.setState({ phase: "result" });
+          this.setState({ score: oldScore + 1, phase: "resultScreen" });
         }
       }, 1000);
     } else {
@@ -75,10 +76,24 @@ class Game extends Component {
           this.setState({ questionId: questionId + 1 });
           parentNode.style.pointerEvents = "auto";
         } else {
-          this.setState({ phase: "result" });
+          this.setState({ phase: "resultScreen" });
         }
       }, 1000);
     }
+  };
+
+  resetGameHandler = () => {
+    this.setState({
+      technologies: {
+        HTML: false,
+        CSS: false,
+        JavaScript: false
+      },
+      questions: [],
+      questionId: 0,
+      score: 0,
+      phase: "welcomeScreen"
+    });
   };
 
   renderGame = () => {
@@ -97,6 +112,14 @@ class Game extends Component {
           questionId={this.state.questionId}
           totalQuestions={this.state.totalQuestions}
           answerSelected={this.answerSelectedHandler}
+        />
+      );
+    } else if (this.state.phase === "resultScreen") {
+      return (
+        <ResultScreen
+          score={this.state.score}
+          totalQuestions={this.state.totalQuestions}
+          resetGame={this.resetGameHandler}
         />
       );
     } else {
