@@ -97,33 +97,35 @@ class Game extends Component {
   };
 
   renderGame = () => {
-    if (this.state.phase === "welcomeScreen") {
-      return (
-        <WelcomeScreen
-          technologies={this.state.technologies}
-          technologyChecked={this.technologyCheckedHandler}
-          gameStarted={this.startGameHandler}
-        />
-      );
-    } else if (this.state.phase === "quiz") {
-      return (
-        <Quiz
-          questions={this.state.questions}
-          questionId={this.state.questionId}
-          totalQuestions={this.state.totalQuestions}
-          answerSelected={this.answerSelectedHandler}
-        />
-      );
-    } else if (this.state.phase === "resultScreen") {
-      return (
-        <ResultScreen
-          score={this.state.score}
-          totalQuestions={this.state.totalQuestions}
-          resetGame={this.resetGameHandler}
-        />
-      );
-    } else {
-      return null;
+    const phase = this.state.phase;
+    switch (phase) {
+      case "welcomeScreen":
+        return (
+          <WelcomeScreen
+            technologies={this.state.technologies}
+            technologyChecked={this.technologyCheckedHandler}
+            gameStarted={this.startGameHandler}
+          />
+        );
+      case "quiz":
+        return (
+          <Quiz
+            questions={this.state.questions}
+            questionId={this.state.questionId}
+            totalQuestions={this.state.totalQuestions}
+            answerSelected={this.answerSelectedHandler}
+          />
+        );
+      case "resultScreen":
+        return (
+          <ResultScreen
+            score={this.state.score}
+            totalQuestions={this.state.totalQuestions}
+            resetGame={this.resetGameHandler}
+          />
+        );
+      default:
+        return null;
     }
   };
 
