@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Transition, animated } from "react-spring";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import questionsData from "../../data/questions";
@@ -17,39 +16,8 @@ class Game extends Component {
     totalQuestions: 3,
     questionId: 0,
     score: 0,
-    phaseIndex: 0
+    phase: "welcomeScreen"
   };
-
-  phase = [
-    props => (
-      <animated.div style={props}>
-        <WelcomeScreen
-          technologies={this.state.technologies}
-          technologyChecked={this.technologyCheckedHandler}
-          gameStarted={this.startGameHandler}
-        />
-      </animated.div>
-    ),
-    props => (
-      <animated.div style={props}>
-        <Quiz
-          questions={this.state.questions}
-          questionId={this.state.questionId}
-          totalQuestions={this.state.totalQuestions}
-          answerSelected={this.answerSelectedHandler}
-        />
-      </animated.div>
-    ),
-    props => (
-      <animated.div style={props}>
-        <ResultScreen
-          score={this.state.score}
-          totalQuestions={this.state.totalQuestions}
-          resetGame={this.resetGameHandler}
-        />
-      </animated.div>
-    )
-  ];
 
   technologyCheckedHandler = technology => {
     const oldTech = this.state.technologies[technology];
@@ -72,7 +40,7 @@ class Game extends Component {
       .sort((a, b) => (Math.random() < 0.5 ? 1 : -1))
       .slice(0, this.state.totalQuestions);
 
-    this.setState({ questions: sortedQuestions, phaseIndex: 1 });
+    this.setState({ questions: sortedQuestions, phase: "quiz" });
   };
 
   answerSelectedHandler = index => e => {
@@ -93,7 +61,7 @@ class Game extends Component {
           this.setState({ score: oldScore + 1, questionId: questionId + 1 });
           parentNode.style.pointerEvents = "auto";
         } else {
-          this.setState({ score: oldScore + 1, phaseIndex: 2 });
+          this.setState({ score: oldScore + 1, phase: "resultScreen" });
         }
       }, 1000);
     } else {
@@ -108,7 +76,7 @@ class Game extends Component {
           this.setState({ questionId: questionId + 1 });
           parentNode.style.pointerEvents = "auto";
         } else {
-          this.setState({ phaseIndex: 2 });
+          this.setState({ phase: "resultScreen" });
         }
       }, 1000);
     }
@@ -124,22 +92,45 @@ class Game extends Component {
       questions: [],
       questionId: 0,
       score: 0,
-      phaseIndex: 0
+      phase: "welcomeScreen"
     });
   };
 
+  renderGame = () => {
+    const phase = this.state.phase;
+    switch (phase) {
+      case "welcomeScreen":
+        return (
+          <WelcomeScreen
+            technologies={this.state.technologies}
+            technologyChecked={this.technologyCheckedHandler}
+            gameStarted={this.startGameHandler}
+          />
+        );
+      case "quiz":
+        return (
+          <Quiz
+            questions={this.state.questions}
+            questionId={this.state.questionId}
+            totalQuestions={this.state.totalQuestions}
+            answerSelected={this.answerSelectedHandler}
+          />
+        );
+      case "resultScreen":
+        return (
+          <ResultScreen
+            score={this.state.score}
+            totalQuestions={this.state.totalQuestions}
+            resetGame={this.resetGameHandler}
+          />
+        );
+      default:
+        return null;
+    }
+  };
+
   render() {
-    return (
-      <div className={styles.Game}>
-        <Transition
-          items={this.state.phaseIndex}
-          from={{ opacity: 0 }}
-          enter={{ opacity: 1 }}
-          leave={{ position: "absolute", opacity: 0 }}>
-          {phaseIndex => this.phase[phaseIndex]}
-        </Transition>
-      </div>
-    );
+    return <div className={styles.Game}>{this.renderGame()}</div>;
   }
 }
 
