@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { CSSTransitionGroup } from "react-transition-group";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import questionsData from "../../data/questions";
@@ -129,7 +130,17 @@ class Game extends Component {
   };
 
   render() {
-    return <div>{this.renderGame()}</div>;
+    return (
+      <CSSTransitionGroup
+        component="div"
+        transitionName="fade"
+        transitionEnterTimeout={800}
+        transitionLeaveTimeout={500}
+        transitionAppear
+        transitionAppearTimeout={500}>
+        <div key={this.state.phase}>{this.renderGame()}</div>
+      </CSSTransitionGroup>
+    );
   }
 }
 

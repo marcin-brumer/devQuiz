@@ -1,4 +1,5 @@
 import React from "react";
+import { CSSTransitionGroup } from "react-transition-group";
 import Question from "./Question/Question";
 import QuestionCount from "./QuestionCount/QuestionCount";
 import AnswerOption from "./AnswerOption/AnswerOption";
@@ -16,14 +17,22 @@ const quiz = props => {
   });
 
   return (
-    <>
-      <QuestionCount
-        questionId={props.questionId}
-        totalQuestions={props.totalQuestions}
-      />
-      <Question text={currentQuestion.question} />
-      <div>{answerOptions}</div>
-    </>
+    <CSSTransitionGroup
+      component="div"
+      transitionName="fade"
+      transitionEnterTimeout={800}
+      transitionLeaveTimeout={500}
+      transitionAppear
+      transitionAppearTimeout={500}>
+      <div key={props.questionId}>
+        <QuestionCount
+          questionId={props.questionId}
+          totalQuestions={props.totalQuestions}
+        />
+        <Question text={currentQuestion.question} />
+        <div>{answerOptions}</div>
+      </div>
+    </CSSTransitionGroup>
   );
 };
 
