@@ -3,7 +3,6 @@ import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import questionsData from "../../data/questions";
 import Quiz from "../../components/Quiz/Quiz";
-import styles from "./Game.module.css";
 
 class Game extends Component {
   state = {
@@ -130,7 +129,7 @@ class Game extends Component {
   };
 
   render() {
-    return <div className={styles.Game}>{this.renderGame()}</div>;
+    return <div>{this.renderGame()}</div>;
   }
 }
 
