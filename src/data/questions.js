@@ -2,7 +2,7 @@ const HTML = [
   {
     question:
       "If you have a page of search results and want to highlight the search term, what HTML tag would you use?",
-    answers: ["<mark>", "<highlight", "<em>", "<strong>"],
+    answers: ["<mark>", "<highlight>", "<em>", "<strong>"],
     correct: 1
   },
   {
@@ -48,7 +48,7 @@ const HTML = [
   {
     question: "How can you open a link in a new tab/browser window?",
     answers: [
-      '<a href="url" open',
+      '<a href="url" open>',
       '<a href="url" target="new">',
       '<a href="url" target="_blank">',
       '<a href="url" new>'
@@ -323,4 +323,69 @@ const CSS = [
   }
 ];
 
-module.exports = { HTML, CSS };
+const JavaScript = [
+  {
+    question: `
+      function aaa() {
+        return
+        {
+            test: 1
+        };
+      }
+      console.log(typeof aaa());
+    `,
+    answers: ["undefined", "function", "object", "number"],
+    correct: 1
+  },
+  {
+    question: `
+      function bar() {
+        return foo;
+        foo = 10;
+        function foo() {}
+        var foo = '11';
+      }
+      console.log(typeof bar());
+    `,
+    answers: ["undefined", "function", "object", "number"],
+    correct: 2
+  },
+  {
+    question: `
+      var x = 3;
+
+      var foo = {
+          x: 2,
+          baz: {
+              x: 1,
+              bar: function() {
+                  return this.x;
+              }
+          }
+      }
+      
+      var go = foo.baz.bar;
+      
+      console.log(go(), foo.baz.bar());
+    `,
+    answers: ["1 3", "1 2", "3 1", "3 2"],
+    correct: 3
+  },
+  {
+    question: `
+      var myArr = ['foo', 'bar', 'baz'];
+      myArr.length = 0;
+      myArr.push('bin');
+      console.log(myArr);
+    `,
+    answers: [
+      "['foo', 'baz', 'bar', 'bin']",
+      "['bin', 'baz', 'bar', 'foo']",
+      "['foo', 'baz', 'bar']",
+      "['bin']"
+    ],
+    correct: 4
+  }
+];
+
+module.exports = { HTML, CSS, JavaScript };
