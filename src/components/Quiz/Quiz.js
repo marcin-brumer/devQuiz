@@ -29,7 +29,10 @@ const quiz = props => {
           questionId={props.questionId}
           totalQuestions={props.totalQuestions}
         />
-        <Question text={currentQuestion.question} />
+        <Question
+          text={currentQuestion.question}
+          hasCode={currentQuestion.code}
+        />
         <div>{answerOptions}</div>
       </div>
     </CSSTransitionGroup>

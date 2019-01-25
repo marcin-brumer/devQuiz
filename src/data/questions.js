@@ -325,66 +325,66 @@ const CSS = [
 
 const JavaScript = [
   {
-    question: `
-      function aaa() {
-        return
-        {
-            test: 1
-        };
-      }
-      console.log(typeof aaa());
-    `,
+    question: `function aaa() {
+  return
+  {
+    test: 1
+  };
+}
+console.log(typeof aaa());
+`,
     answers: ["undefined", "function", "object", "number"],
-    correct: 1
+    correct: 1,
+    code: true
   },
   {
-    question: `
-      function bar() {
-        return foo;
-        foo = 10;
-        function foo() {}
-        var foo = '11';
-      }
-      console.log(typeof bar());
-    `,
+    question: `function bar() {
+  return foo;
+  foo = 10;
+  function foo() {}
+  var foo = '11';
+}
+console.log(typeof bar());
+`,
     answers: ["undefined", "function", "object", "number"],
-    correct: 2
+    correct: 2,
+    code: true
   },
   {
-    question: `
-      var x = 3;
+    question: `var x = 3;
 
-      var foo = {
-          x: 2,
-          baz: {
-              x: 1,
-              bar: function() {
-                  return this.x;
-              }
-          }
-      }
-      
-      var go = foo.baz.bar;
-      
-      console.log(go(), foo.baz.bar());
-    `,
+var foo = {
+  x: 2,
+  baz: {
+    x: 1,
+    bar: function() {
+        return this.x;
+    }
+  }
+}
+
+var go = foo.baz.bar;
+
+console.log(go(), foo.baz.bar());
+`,
     answers: ["1 3", "1 2", "3 1", "3 2"],
-    correct: 3
+    correct: 3,
+    code: true
   },
   {
-    question: `
-      var myArr = ['foo', 'bar', 'baz'];
-      myArr.length = 0;
-      myArr.push('bin');
-      console.log(myArr);
-    `,
+    question: `var myArr = ['foo', 'bar', 'baz'];
+myArr.length = 0;
+myArr.push('bin');
+console.log(myArr);
+`,
     answers: [
       "['foo', 'baz', 'bar', 'bin']",
       "['bin', 'baz', 'bar', 'foo']",
       "['foo', 'baz', 'bar']",
       "['bin']"
     ],
-    correct: 4
+    correct: 4,
+    code: true
   }
 ];
 

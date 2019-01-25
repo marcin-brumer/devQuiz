@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import Game from "./containers/Game/Game";
 import "./App.css";
+import "./prism.css";
 
 class App extends Component {
   render() {
