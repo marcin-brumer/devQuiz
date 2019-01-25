@@ -325,13 +325,13 @@ const CSS = [
 
 const JavaScript = [
   {
-    question: `function aaa() {
+    question: `function foo() {
   return
   {
     test: 1
   };
 }
-console.log(typeof aaa());
+console.log(typeof foo());
 `,
     answers: ["undefined", "function", "object", "number"],
     correct: 1,
@@ -383,6 +383,128 @@ console.log(myArr);
       "['foo', 'baz', 'bar']",
       "['bin']"
     ],
+    correct: 4,
+    code: true
+  },
+  {
+    question: `function foo(a, b) {
+  arguments[1] = 2;
+  console.log(b);
+}
+foo(1);
+`,
+    answers: ["undefined", "1", "2", "ReferenceError"],
+    correct: 1,
+    code: true
+  },
+  {
+    question: `var arr = [];
+arr[0]  = 'a';
+arr[1]  = 'b';
+arr.foo = 'c';
+console.log(arr.length);
+`,
+    answers: ["1", "2", "3", "undefined"],
+    correct: 2,
+    code: true
+  },
+  {
+    question: `function foo() {
+  id = 5;
+}
+let id = null;
+foo();
+console.log(id)
+`,
+    answers: ["null", "undefined", "5", "throw an error"],
+    correct: 3,
+    code: true
+  },
+  {
+    question: `console.log(bar);
+const bar = 1;
+`,
+    answers: ["null", "undefined", "1", "throw an error"],
+    correct: 4,
+    code: true
+  },
+  {
+    question: `let x = 5;
+for (let x = 0; x < 10; x++) {}
+console.log(x)
+`,
+    answers: ["5", "0", "10", "throw an error"],
+    correct: 1,
+    code: true
+  },
+  {
+    question: `var x = 1
+var obj = {
+  x: 2,
+  get: function () {
+    return () => this.x;
+  }
+}
+obj.get()();
+`,
+    answers: ["1", "2", "undefined", "throw an error"],
+    correct: 2,
+    code: true
+  },
+  {
+    question: `var foo = () => 10;
+console.log(foo(2));
+`,
+    answers: ["undefined", "2", "10", "throw an error"],
+    correct: 3,
+    code: true
+  },
+  {
+    question: `function foo() {
+  var x = 2;
+  if (x) {
+    let x = (x + 3);
+    console.log(x);
+  }
+}
+`,
+    answers: ["3", "5", "NaN", "throw an error"],
+    correct: 4,
+    code: true
+  },
+  {
+    question: `var foo = x => {
+  let y = x * 2;
+};
+console.log(foo(4));
+`,
+    answers: ["undefined", "4", "8", "throw an error"],
+    correct: 1,
+    code: true
+  },
+  {
+    question: `var a = () => {
+  console.log(arguments[1]);
+};
+a(1, 2, 3);
+`,
+    answers: ["1", "2", "[1, 2, 3]", "throw an error"],
+    correct: 4,
+    code: true
+  },
+  {
+    question: `function get(x) {
+  switch (true) {
+    case x < 10:
+      let y = 5;
+      return y;
+    case x >= 10:
+      let y = 20;
+      return y;
+  }
+}
+`,
+    answers: ["5", "15", "20", "throw an error"],
     correct: 4,
     code: true
   }
