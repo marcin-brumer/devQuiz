@@ -188,10 +188,10 @@ const CSS = [
   {
     question: "How do you display hyperlinks without an underline?",
     answers: [
-      "a {text-decoration:none;}",
-      "a {text-decoration:no-underline;}",
-      "a {decoration:no-underline;}",
-      "a {underline:none;}"
+      "a {text-decoration: none;}",
+      "a {text-decoration: no-underline;}",
+      "a {decoration: no-underline;}",
+      "a {underline: none;}"
     ],
     correct: 1
   },
