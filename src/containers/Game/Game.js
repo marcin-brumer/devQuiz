@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { CSSTransitionGroup } from "react-transition-group";
+import shuffleQuestions from "../../utils/shuffleQuestions";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import questionsData from "../../data/questions";
@@ -35,11 +36,11 @@ class Game extends Component {
         questions.push(...questionsData[tech]);
       }
     });
-    // Shuffles Questions
-    const sortedQuestions = questions
-      .sort((a, b) => (Math.random() < 0.5 ? 1 : -1))
-      .slice(0, this.state.totalQuestions);
-
+    // Shuffles questions array and takes first {totalQuestions} amount
+    const sortedQuestions = shuffleQuestions(questions).slice(
+      0,
+      this.state.totalQuestions
+    );
     this.setState({ questions: sortedQuestions, phase: "quiz" });
   };
 
