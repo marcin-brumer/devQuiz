@@ -245,7 +245,7 @@ const CSS = [
   },
   {
     question:
-      "Which snippet of CSS is commonly used to center a website horizontally?",
+      "What is the correct CSS syntax for disabling bulletpoints in the list?",
     answers: [
       "list: none",
       "bulletpoints: none",
