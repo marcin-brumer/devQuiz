@@ -13,7 +13,7 @@ class Game extends Component {
       JavaScript: false
     },
     questions: [],
-    totalQuestions: 3,
+    totalQuestions: this.props.totalQuestions,
     questionId: 0,
     score: 0,
     phase: "welcomeScreen"
@@ -78,7 +78,7 @@ class Game extends Component {
         } else {
           this.setState({ phase: "resultScreen" });
         }
-      }, 1000);
+      }, 2000);
     }
   };
 

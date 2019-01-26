@@ -9,7 +9,7 @@ class App extends Component {
       <div className="App">
         <header className="App-header">devQuiz</header>
         <main className="App-main">
-          <Game />
+          <Game totalQuestions={20} />
         </main>
       </div>
     );
