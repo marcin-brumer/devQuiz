@@ -483,12 +483,85 @@ console.log(foo(4));
     code: true
   },
   {
+    question: `function foo(...items) {
+  console.log(items);
+}
+
+foo("a", "b", "c");
+`,
+    answers: ['"a", "b", "c"', '["a", "b", "c"]', "a", "throw an error"],
+    correct: 2,
+    code: true
+  },
+  {
+    question: `var arr = ["a", ..."bcd", "e"];
+console.log(arr);
+`,
+    answers: [
+      '["a", "bcd", "e"]',
+      '["a", "bc", "de"]',
+      '["a", "b", "c", "d", "e"]',
+      "throw an error"
+    ],
+    correct: 3,
+    code: true
+  },
+  {
     question: `var a = () => {
   console.log(arguments[1]);
 };
 a(1, 2, 3);
 `,
     answers: ["1", "2", "[1, 2, 3]", "throw an error"],
+    correct: 4,
+    code: true
+  },
+  {
+    question: `var numbers = [2, 6, 4];
+console.log(Math.max(...numbers));
+`,
+    answers: ["6", "NaN", "undefined", "throw an error"],
+    correct: 1,
+    code: true
+  },
+  {
+    question: `class Person {}
+console.log(typeof Person);
+`,
+    answers: ["class", "function", "object", "Symbol"],
+    correct: 2,
+    code: true
+  },
+  {
+    question: `function foo({a, b}, c) {
+  console.log(a);
+}
+foo({a: 2, b: 6}, 8)
+`,
+    answers: ["{a: 2, b: 6}}", "NaN", "2", "throw an error"],
+    correct: 3,
+    code: true
+  },
+  {
+    question: `class Car {
+  static get() {
+    return "Ford";
+  }
+}
+const car = new Car();
+console.log(car.get());
+`,
+    answers: ["Ford", "null", "undefined", "throw an error"],
+    correct: 4,
+    code: true
+  },
+  {
+    question: `class Item {
+  static id = 10;
+}
+console.log(Item.id);
+`,
+    answers: ["10", "null", "undefined", "throw an error"],
     correct: 4,
     code: true
   },
