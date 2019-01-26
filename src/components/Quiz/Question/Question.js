@@ -16,7 +16,7 @@ class Question extends Component {
           <div className={styles.Question}>
             What will be printed in the console?
           </div>
-          <pre style={{ margin: "0 5px" }}>
+          <pre style={{ margin: "0 20px" }}>
             <code className="language-javascript">{this.props.text}</code>
           </pre>
         </>

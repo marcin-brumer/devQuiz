@@ -13,10 +13,18 @@
   background-color: #fff;
   margin: 50px auto 0 auto;
   width: 800px;
-  padding: 20px 0 5px 0;
+  padding: 20px 0 20px 0;
   border-radius: 5px;
-  min-height: 430px;
+
   position: relative;
+}
+
+.Title::before {
+  content: "{ ";
+}
+
+.Title::after {
+  content: " }";
 }
 
 .fade-enter {
