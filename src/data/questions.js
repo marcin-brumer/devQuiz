@@ -155,6 +155,27 @@ const HTML = [
     question: "What is the smallest Heading Tag in HTML?",
     answers: ["h6", "h8", "h4", "h1"],
     correct: 1
+  },
+  {
+    question:
+      "What atribute should be used to validate the field value against a regular expression?",
+    answers: ["required", "pattern", "regex", "expression"],
+    correct: 2
+  },
+  {
+    question: "What atribute allow to turn off HTML5 form validation?",
+    answers: ["formnovalidate", "validateoff", "novalidate", "novalidation"],
+    correct: 3
+  },
+  {
+    question: "What does <dl> stand for?",
+    answers: [
+      "depiction list",
+      "details list",
+      "declaration list",
+      "description list"
+    ],
+    correct: 4
   }
 ];
 
@@ -320,6 +341,27 @@ const CSS = [
     question: "Which of these CSS properties is NOT real?",
     answers: ["text-opacity", "object-fit", "pointer-events", "font-smoothing"],
     correct: 1
+  },
+  {
+    question:
+      "Margin collapsing is a behaviour when the top and the bottom margins of blocks are:",
+    answers: [
+      "combined into a single margin whose size is the smallsest of the individual margins",
+      "combined into a single margin whose size is the largest of the individual margins",
+      "combined into a single margin whose size is the sum of the individual margins",
+      "combined into a single margin whose size is the difference of the individual margins"
+    ],
+    correct: 2
+  },
+  {
+    question: "Which of the following is general sibling selector?",
+    answers: ["A > B", "A + B", "A ~ B", "A B"],
+    correct: 3
+  },
+  {
+    question: "Which of the following is descendant selector?",
+    answers: ["A > B", "A + B", "A ~ B", "A B"],
+    correct: 4
   }
 ];
 
@@ -553,6 +595,32 @@ console.log(car.get());
 `,
     answers: ["Ford", "null", "undefined", "throw an error"],
     correct: 4,
+    code: true
+  },
+  {
+    question: `const [first] = [1, 2, 3, 4];
+console.log(first);
+`,
+    answers: ["1", "[1]", "[1, 2, 3, 4]", "throw an error"],
+    correct: 1,
+    code: true
+  },
+  {
+    question: `const str = "ABC";
+const [x, y] = str;
+console.log(y);
+`,
+    answers: ["A", "B", "ABC", "throw an error"],
+    correct: 2,
+    code: true
+  },
+  {
+    question: `let x = 1, y = 2;
+[x, y] = [y, x];
+console.log(x);
+`,
+    answers: ["undefined", "1", "2", "throw an error"],
+    correct: 3,
     code: true
   },
   {
