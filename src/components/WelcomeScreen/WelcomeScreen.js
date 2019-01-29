@@ -1,6 +1,7 @@
 import React from "react";
 import Technologies from "./Technologies/Technologies";
 import styles from "./WelcomeScreen.module.css";
+import QuestionsSlider from "./QuestionsSlider/QuestionsSlider";
 
 const welcomeScreen = props => {
   const techValues = Object.values(props.technologies);
@@ -19,11 +20,12 @@ const welcomeScreen = props => {
         technologies={props.technologies}
         technologyChecked={props.technologyChecked}
       />
+      <h3>and decide how many questions you want to answer</h3>
+      <QuestionsSlider totalQuestions={props.totalQuestions} />
       <button
         className={styles.StartBtn}
         onClick={props.gameStarted}
-        disabled={!gameReady}
-      >
+        disabled={!gameReady}>
         Start
       </button>
     </>
