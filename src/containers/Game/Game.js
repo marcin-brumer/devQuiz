@@ -14,7 +14,7 @@ class Game extends Component {
       JavaScript: false
     },
     questions: [],
-    totalQuestions: this.props.totalQuestions,
+    totalQuestions: 10,
     questionId: 0,
     score: 0,
     phase: "welcomeScreen"
@@ -26,6 +26,10 @@ class Game extends Component {
     const updatedTechnologies = { ...this.state.technologies };
     updatedTechnologies[technology] = newTech;
     this.setState({ technologies: updatedTechnologies });
+  };
+
+  selectTotalQuestionsHandler = e => {
+    this.setState({ totalQuestions: e.target.value });
   };
 
   startGameHandler = () => {
@@ -106,6 +110,8 @@ class Game extends Component {
             technologies={this.state.technologies}
             technologyChecked={this.technologyCheckedHandler}
             gameStarted={this.startGameHandler}
+            totalQuestions={this.state.totalQuestions}
+            selectTotalQuestions={this.selectTotalQuestionsHandler}
           />
         );
       case "quiz":

@@ -21,7 +21,10 @@ const welcomeScreen = props => {
         technologyChecked={props.technologyChecked}
       />
       <h3>and decide how many questions you want to answer</h3>
-      <QuestionsSlider totalQuestions={props.totalQuestions} />
+      <QuestionsSlider
+        totalQuestions={props.totalQuestions}
+        selectTotalQuestions={props.selectTotalQuestions}
+      />
       <button
         className={styles.StartBtn}
         onClick={props.gameStarted}
