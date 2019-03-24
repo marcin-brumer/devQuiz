@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions";
 import styles from "./ResultScreen.module.css";
 
 const resultScreen = props => {
@@ -29,4 +31,16 @@ const resultScreen = props => {
   );
 };
 
-export default resultScreen;
+const mapStateToProps = state => ({
+  totalQuestions: state.totalQuestions,
+  score: state.score
+});
+
+const mapDispatchToProps = dispatch => ({
+  resetGame: () => dispatch(actionCreators.resetGame())
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(resultScreen);

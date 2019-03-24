@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions";
 import Technologies from "./Technologies/Technologies";
 import styles from "./WelcomeScreen.module.css";
 import QuestionsSlider from "./QuestionsSlider/QuestionsSlider";
@@ -16,18 +18,14 @@ const welcomeScreen = props => {
     <>
       <h1>Welcome to devQuiz</h1>
       <h3>First select the technologies from which you want to make a quiz</h3>
-      <Technologies
-        technologies={props.technologies}
-        technologyChecked={props.technologyChecked}
-      />
+      <Technologies />
       <h3>and decide how many questions you want to answer</h3>
-      <QuestionsSlider
-        totalQuestions={props.totalQuestions}
-        selectTotalQuestions={props.selectTotalQuestions}
-      />
+      <QuestionsSlider />
       <button
         className={styles.StartBtn}
-        onClick={props.gameStarted}
+        onClick={() =>
+          props.startGame(props.totalQuestions, props.technologies)
+        }
         disabled={!gameReady}>
         Start
       </button>
@@ -35,4 +33,17 @@ const welcomeScreen = props => {
   );
 };
 
-export default welcomeScreen;
+const mapStateToProps = state => ({
+  technologies: state.technologies,
+  totalQuestions: state.totalQuestions
+});
+
+const mapDispatchToProps = dispatch => ({
+  startGame: (totalQuestions, technologies) =>
+    dispatch(actionCreators.startGame(totalQuestions, technologies))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(welcomeScreen);

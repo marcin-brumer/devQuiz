@@ -1,53 +1,11 @@
 import React, { Component } from "react";
+import { connect } from "react-redux";
 import { CSSTransitionGroup } from "react-transition-group";
-import shuffleQuestions from "../../utils/shuffleQuestions";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import ResultScreen from "../../components/ResultScreen/ResultScreen";
-import questionsData from "../../data/questions";
 import Quiz from "../../components/Quiz/Quiz";
 
 class Game extends Component {
-  state = {
-    technologies: {
-      HTML: false,
-      CSS: false,
-      JavaScript: false
-    },
-    questions: [],
-    totalQuestions: 10,
-    questionId: 0,
-    score: 0,
-    phase: "welcomeScreen"
-  };
-
-  technologyCheckedHandler = technology => {
-    const oldTech = this.state.technologies[technology];
-    const newTech = !oldTech;
-    const updatedTechnologies = { ...this.state.technologies };
-    updatedTechnologies[technology] = newTech;
-    this.setState({ technologies: updatedTechnologies });
-  };
-
-  selectTotalQuestionsHandler = e => {
-    this.setState({ totalQuestions: e.target.value });
-  };
-
-  startGameHandler = () => {
-    const questions = [];
-    const technologies = Object.keys(this.state.technologies);
-    technologies.forEach(tech => {
-      if (this.state.technologies[tech]) {
-        questions.push(...questionsData[tech]);
-      }
-    });
-    // Shuffles questions array and takes first {totalQuestions} amount
-    const sortedQuestions = shuffleQuestions(questions).slice(
-      0,
-      this.state.totalQuestions
-    );
-    this.setState({ questions: sortedQuestions, phase: "quiz" });
-  };
-
   answerSelectedHandler = index => e => {
     const { questions, questionId } = this.state;
     const parentNode = e.target.parentNode;
@@ -87,50 +45,15 @@ class Game extends Component {
     }
   };
 
-  resetGameHandler = () => {
-    this.setState({
-      technologies: {
-        HTML: false,
-        CSS: false,
-        JavaScript: false
-      },
-      questions: [],
-      questionId: 0,
-      score: 0,
-      phase: "welcomeScreen"
-    });
-  };
-
   renderGame = () => {
-    const phase = this.state.phase;
+    const phase = this.props.phase;
     switch (phase) {
       case "welcomeScreen":
-        return (
-          <WelcomeScreen
-            technologies={this.state.technologies}
-            technologyChecked={this.technologyCheckedHandler}
-            gameStarted={this.startGameHandler}
-            totalQuestions={this.state.totalQuestions}
-            selectTotalQuestions={this.selectTotalQuestionsHandler}
-          />
-        );
+        return <WelcomeScreen />;
       case "quiz":
-        return (
-          <Quiz
-            questions={this.state.questions}
-            questionId={this.state.questionId}
-            totalQuestions={this.state.totalQuestions}
-            answerSelected={this.answerSelectedHandler}
-          />
-        );
+        return <Quiz />;
       case "resultScreen":
-        return (
-          <ResultScreen
-            score={this.state.score}
-            totalQuestions={this.state.totalQuestions}
-            resetGame={this.resetGameHandler}
-          />
-        );
+        return <ResultScreen />;
       default:
         return null;
     }
@@ -145,10 +68,14 @@ class Game extends Component {
         transitionLeaveTimeout={500}
         transitionAppear
         transitionAppearTimeout={500}>
-        <div key={this.state.phase}>{this.renderGame()}</div>
+        <div key={this.props.phase}>{this.renderGame()}</div>
       </CSSTransitionGroup>
     );
   }
 }
 
-export default Game;
+const mapStateToProps = state => ({
+  phase: state.phase
+});
+
+export default connect(mapStateToProps)(Game);

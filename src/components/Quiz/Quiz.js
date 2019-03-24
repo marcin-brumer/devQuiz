@@ -1,4 +1,6 @@
 import React from "react";
+import { connect } from "react-redux";
+import * as actionCreators from "../../store/actions";
 import { CSSTransitionGroup } from "react-transition-group";
 import Question from "./Question/Question";
 import QuestionCount from "./QuestionCount/QuestionCount";
@@ -11,7 +13,7 @@ const quiz = props => {
       <AnswerOption
         key={answer}
         text={`${String.fromCharCode(index + 65)}. ${answer}`}
-        clicked={props.answerSelected(index)}
+        clicked={() => props.answerSelected(index)}
       />
     );
   });
@@ -25,10 +27,7 @@ const quiz = props => {
       transitionAppear
       transitionAppearTimeout={500}>
       <div key={props.questionId}>
-        <QuestionCount
-          questionId={props.questionId}
-          totalQuestions={props.totalQuestions}
-        />
+        <QuestionCount questionId={props.questionId} />
         <Question
           text={currentQuestion.question}
           hasCode={currentQuestion.code}
@@ -39,4 +38,16 @@ const quiz = props => {
   );
 };
 
-export default quiz;
+const mapStateToProps = state => ({
+  questions: state.questions,
+  questionId: state.questionId
+});
+
+const mapDispatchToProps = dispatch => ({
+  answerSelected: index => dispatch(actionCreators.answerSelected(index))
+});
+
+export default connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(quiz);
