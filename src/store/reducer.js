@@ -1,4 +1,5 @@
 import * as actionTypes from "./actions";
+import { gamePhase } from "../constants";
 
 const initialState = {
   technologies: {
@@ -10,7 +11,7 @@ const initialState = {
   questionId: 0,
   totalQuestions: 10,
   score: 0,
-  phase: "welcomeScreen"
+  phase: gamePhase.WELCOME_SCREEN
 };
 
 const reducer = (state = initialState, action) => {
@@ -26,7 +27,11 @@ const reducer = (state = initialState, action) => {
       return { ...state, totalQuestions: action.value };
 
     case actionTypes.START_GAME:
-      return { ...state, questions: action.questions, phase: "quiz" };
+      return {
+        ...state,
+        questions: action.questions,
+        phase: gamePhase.QUIZ_SCREEN
+      };
 
     case actionTypes.ANSWER_SELECTED:
       let oldScore = state.score;
@@ -40,13 +45,17 @@ const reducer = (state = initialState, action) => {
             questionId: state.questionId + 1
           };
         } else {
-          return { ...state, score: oldScore + 1, phase: "resultScreen" };
+          return {
+            ...state,
+            score: oldScore + 1,
+            phase: gamePhase.RESULT_SCREEN
+          };
         }
       } else {
         if (state.questionId <= state.totalQuestions - 2) {
           return { ...state, questionId: state.questionId + 1 };
         } else {
-          return { ...state, phase: "resultScreen" };
+          return { ...state, phase: gamePhase.RESULT_SCREEN };
         }
       }
 

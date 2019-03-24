@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CSSTransitionGroup } from "react-transition-group";
+import { gamePhase } from "../../constants";
 import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
 import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import Quiz from "../../components/Quiz/Quiz";
@@ -48,11 +49,11 @@ class Game extends Component {
   renderGame = () => {
     const phase = this.props.phase;
     switch (phase) {
-      case "welcomeScreen":
+      case gamePhase.WELCOME_SCREEN:
         return <WelcomeScreen />;
-      case "quiz":
+      case gamePhase.QUIZ_SCREEN:
         return <Quiz />;
-      case "resultScreen":
+      case gamePhase.RESULT_SCREEN:
         return <ResultScreen />;
       default:
         return null;
