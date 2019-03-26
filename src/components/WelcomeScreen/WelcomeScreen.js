@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../store/actions";
+import * as actionCreators from "../../store/actions/actions";
 import Technologies from "./Technologies/Technologies";
 import styles from "./WelcomeScreen.module.css";
 import QuestionsSlider from "./QuestionsSlider/QuestionsSlider";

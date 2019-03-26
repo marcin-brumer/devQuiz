@@ -1,6 +1,6 @@
 import React from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../../store/actions";
+import * as actionCreators from "../../../store/actions/actions";
 import styles from "./QuestionsSlider.module.css";
 
 const questionsSlider = props => {

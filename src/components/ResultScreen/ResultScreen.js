@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import * as actionCreators from "../../store/actions";
+import * as actionCreators from "../../store/actions/actions";
 import styles from "./ResultScreen.module.css";
 
 class ResultScreen extends Component {
