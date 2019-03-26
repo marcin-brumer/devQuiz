@@ -2,6 +2,7 @@ import shuffleQuestions from "../utils/shuffleQuestions";
 import questionsData from "../data/questions";
 
 export const START_GAME = "START_GAME";
+export const LOAD_WELCOME_SCREEN = "LOAD_WELCOME_SCREEN";
 export const TOTAL_QUESTIONS_SELECTED = "TOTAL_QUESTIONS_SELECTED";
 export const ANSWER_SELECTED = "ANSWER_SELECTED";
 export const RESET_GAME = "RESET_GAME";
@@ -45,4 +46,8 @@ export const answerSelected = index => {
 
 export const resetGame = () => ({
   type: RESET_GAME
+});
+
+export const loadWelcomeScreen = () => ({
+  type: LOAD_WELCOME_SCREEN
 });
