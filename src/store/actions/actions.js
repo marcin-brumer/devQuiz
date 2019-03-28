@@ -1,6 +1,4 @@
 import * as actionTypes from "./actionTypes";
-import shuffleQuestions from "../../utils/shuffleQuestions";
-import questionsData from "../../data/questions";
 
 export const technologyChecked = technology => {
   return {
@@ -17,24 +15,17 @@ export const totalQuestionsSelected = event => {
 };
 
 export const startGame = (totalQuestions, technologies) => {
-  const questions = [];
-  Object.keys(technologies).forEach(tech => {
-    if (technologies[tech]) {
-      questions.push(...questionsData[tech]);
-    }
-  });
-  // Shuffles questions array and takes first {totalQuestions} amount
-  const sortedQuestions = shuffleQuestions(questions).slice(0, totalQuestions);
   return {
-    type: actionTypes.START_GAME,
-    questions: sortedQuestions
+    type: actionTypes.INIT_START_GAME,
+    totalQuestions,
+    technologies
   };
 };
 
 export const answerSelected = index => {
   return {
     type: actionTypes.ANSWER_SELECTED,
-    index: index
+    index
   };
 };
 
