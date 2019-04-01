@@ -33,30 +33,26 @@ const reducer = (state = initialState, action) => {
         phase: gamePhase.QUIZ_SCREEN
       };
 
-    case actionTypes.ANSWER_SELECTED:
-      let oldScore = state.score;
-      // Answers are numbered from 1, not from 0, so we need to substract 1
-      const correctAnswer = state.questions[state.questionId].correct - 1;
-      if (correctAnswer === action.index) {
-        if (state.questionId <= state.totalQuestions - 2) {
-          return {
-            ...state,
-            score: oldScore + 1,
-            questionId: state.questionId + 1
-          };
-        } else {
-          return {
-            ...state,
-            score: oldScore + 1,
-            phase: gamePhase.RESULT_SCREEN
-          };
-        }
+    case actionTypes.CORRECT_ANSWER_SELECTED:
+      if (state.questionId <= state.totalQuestions - 2) {
+        return {
+          ...state,
+          score: state.score + 1,
+          questionId: state.questionId + 1
+        };
       } else {
-        if (state.questionId <= state.totalQuestions - 2) {
-          return { ...state, questionId: state.questionId + 1 };
-        } else {
-          return { ...state, phase: gamePhase.RESULT_SCREEN };
-        }
+        return {
+          ...state,
+          score: state.score + 1,
+          phase: gamePhase.RESULT_SCREEN
+        };
+      }
+
+    case actionTypes.WRONG_ANSWER_SELECTED:
+      if (state.questionId <= state.totalQuestions - 2) {
+        return { ...state, questionId: state.questionId + 1 };
+      } else {
+        return { ...state, phase: gamePhase.RESULT_SCREEN };
       }
 
     case actionTypes.LOAD_WELCOME_SCREEN:

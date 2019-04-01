@@ -7,45 +7,6 @@ import ResultScreen from "../../components/ResultScreen/ResultScreen";
 import Quiz from "../../components/Quiz/Quiz";
 
 class Game extends Component {
-  answerSelectedHandler = index => e => {
-    const { questions, questionId } = this.state;
-    const parentNode = e.target.parentNode;
-    let oldScore = this.state.score;
-    // Answers are numbered from 1, not from 0, so we need to substract 1
-    const correctAnswer = questions[questionId].correct - 1;
-
-    if (correctAnswer === index) {
-      // Prevent other answers from being clicked
-      parentNode.style.pointerEvents = "none";
-      e.target.style.backgroundColor = "#C4FFCA";
-
-      // Wait some time for UX
-      setTimeout(() => {
-        if (this.state.questionId <= this.state.totalQuestions - 2) {
-          this.setState({ score: oldScore + 1, questionId: questionId + 1 });
-          parentNode.style.pointerEvents = "auto";
-        } else {
-          this.setState({ score: oldScore + 1, phase: "resultScreen" });
-        }
-      }, 1000);
-    } else {
-      // Prevent other answers from being clicked
-      parentNode.style.pointerEvents = "none";
-      parentNode.childNodes[correctAnswer].style.backgroundColor = "#C4FFCA";
-      e.target.style.backgroundColor = "#FF969F";
-
-      // Wait some time for UX
-      setTimeout(() => {
-        if (this.state.questionId <= this.state.totalQuestions - 2) {
-          this.setState({ questionId: questionId + 1 });
-          parentNode.style.pointerEvents = "auto";
-        } else {
-          this.setState({ phase: "resultScreen" });
-        }
-      }, 2000);
-    }
-  };
-
   renderGame = () => {
     const phase = this.props.phase;
     switch (phase) {

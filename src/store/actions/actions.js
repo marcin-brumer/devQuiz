@@ -22,10 +22,13 @@ export const startGame = (totalQuestions, technologies) => {
   };
 };
 
-export const answerSelected = index => {
+export const answerSelected = (index, event, questions, questionId) => {
   return {
     type: actionTypes.ANSWER_SELECTED,
-    index
+    index,
+    event,
+    questions,
+    questionId
   };
 };
 

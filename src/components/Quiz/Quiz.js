@@ -13,7 +13,9 @@ const quiz = props => {
       <AnswerOption
         key={answer}
         text={`${String.fromCharCode(index + 65)}. ${answer}`}
-        clicked={() => props.answerSelected(index)}
+        clicked={event =>
+          props.answerSelected(index, event, props.questions, props.questionId)
+        }
       />
     );
   });
@@ -44,7 +46,8 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  answerSelected: index => dispatch(actionCreators.answerSelected(index))
+  answerSelected: (index, event, questions, questionId) =>
+    dispatch(actionCreators.answerSelected(index, event, questions, questionId))
 });
 
 export default connect(
