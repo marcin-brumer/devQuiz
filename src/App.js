@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import Game from "./containers/Game/Game";
+import Game from "./components/Game";
 import "./App.css";
 import "./prism.css";
 

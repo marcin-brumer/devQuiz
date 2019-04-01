@@ -1,10 +1,10 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { CSSTransitionGroup } from "react-transition-group";
-import { gamePhase } from "../../constants";
-import WelcomeScreen from "../../components/WelcomeScreen/WelcomeScreen";
-import ResultScreen from "../../components/ResultScreen/ResultScreen";
-import Quiz from "../../components/Quiz/Quiz";
+import { gamePhase } from "../constants";
+import WelcomeScreen from "./WelcomeScreen/WelcomeScreen";
+import ResultScreen from "./ResultScreen/ResultScreen";
+import Quiz from "./Quiz/Quiz";
 
 class Game extends Component {
   renderGame = () => {
