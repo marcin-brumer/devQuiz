@@ -1,34 +1,28 @@
-import React, { Component } from "react";
+import React, { useEffect } from "react";
 import styles from "./Question.module.css";
 import Prism from "prismjs";
 
-class Question extends Component {
-  componentDidMount() {
-    Prism.highlightAll();
+const question = props => {
+  useEffect(() => Prism.highlightAll(), []);
+
+  let displayedQuestion;
+
+  if (props.hasCode) {
+    displayedQuestion = (
+      <>
+        <div className={styles.Question}>
+          What will be printed in the console?
+        </div>
+        <pre style={{ margin: "0 20px" }}>
+          <code className="language-javascript">{props.text}</code>
+        </pre>
+      </>
+    );
+  } else {
+    displayedQuestion = <div className={styles.Question}>{props.text}</div>;
   }
 
-  render() {
-    let displayedQuestion;
+  return <>{displayedQuestion}</>;
+};
 
-    if (this.props.hasCode) {
-      displayedQuestion = (
-        <>
-          <div className={styles.Question}>
-            What will be printed in the console?
-          </div>
-          <pre style={{ margin: "0 20px" }}>
-            <code className="language-javascript">{this.props.text}</code>
-          </pre>
-        </>
-      );
-    } else {
-      displayedQuestion = (
-        <div className={styles.Question}>{this.props.text}</div>
-      );
-    }
-
-    return <>{displayedQuestion}</>;
-  }
-}
-
-export default Question;
+export default question;
