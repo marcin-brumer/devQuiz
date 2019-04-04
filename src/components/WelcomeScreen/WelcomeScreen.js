@@ -6,7 +6,7 @@ import styles from "./WelcomeScreen.module.css";
 import QuestionsSlider from "./QuestionsSlider/QuestionsSlider";
 
 const welcomeScreen = props => {
-  const techValues = Object.values(props.technologies);
+  const [...techValues] = props.technologies.values();
   let gameReady = false;
   techValues.forEach(val => {
     if (val === true) {
@@ -33,8 +33,8 @@ const welcomeScreen = props => {
 };
 
 const mapStateToProps = state => ({
-  technologies: state.technologies,
-  totalQuestions: state.totalQuestions
+  technologies: state.get("technologies"),
+  totalQuestions: state.get("totalQuestions")
 });
 
 const mapDispatchToProps = dispatch => ({

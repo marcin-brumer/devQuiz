@@ -37,7 +37,7 @@ const game = props => {
 };
 
 const mapStateToProps = state => ({
-  phase: state.phase
+  phase: state.get("phase")
 });
 
 export default connect(mapStateToProps)(game);

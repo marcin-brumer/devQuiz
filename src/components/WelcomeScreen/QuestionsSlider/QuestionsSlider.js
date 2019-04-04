@@ -20,7 +20,7 @@ const questionsSlider = props => {
 };
 
 const mapStateToProps = state => ({
-  totalQuestions: state.totalQuestions
+  totalQuestions: state.get("totalQuestions")
 });
 
 const mapDispatchToProps = dispatch => ({

@@ -1,7 +1,8 @@
+import { fromJS } from "immutable";
 import * as actionTypes from "./actions/actionTypes";
 import { gamePhase } from "../constants";
 
-const initialState = {
+const initialState = fromJS({
   technologies: {
     HTML: false,
     CSS: false,
@@ -12,16 +13,12 @@ const initialState = {
   totalQuestions: 10,
   score: 0,
   phase: gamePhase.WELCOME_SCREEN
-};
+});
 
 const reducer = (state = initialState, action) => {
   switch (action.type) {
     case actionTypes.TECHNOLOGY_CHECKED:
-      const oldTech = state.technologies[action.technology];
-      const newTech = !oldTech;
-      const updatedTechnologies = { ...state.technologies };
-      updatedTechnologies[action.technology] = newTech;
-      return { ...state, technologies: updatedTechnologies };
+      return state.updateIn(["technologies", action.technology], tech => !tech);
 
     case actionTypes.TOTAL_QUESTIONS_SELECTED:
       return { ...state, totalQuestions: action.value };
