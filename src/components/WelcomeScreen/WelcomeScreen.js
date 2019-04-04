@@ -6,10 +6,6 @@ import styles from "./WelcomeScreen.module.css";
 import QuestionsSlider from "./QuestionsSlider/QuestionsSlider";
 
 class WelcomeScreen extends Component {
-  componentDidMount() {
-    this.props.resetGame();
-  }
-
   render() {
     const techValues = Object.values(this.props.technologies);
     let gameReady = false;
@@ -50,8 +46,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   startGame: (totalQuestions, technologies) =>
-    dispatch(actionCreators.startGame(totalQuestions, technologies)),
-  resetGame: () => dispatch(actionCreators.resetGame())
+    dispatch(actionCreators.startGame(totalQuestions, technologies))
 });
 
 export default connect(

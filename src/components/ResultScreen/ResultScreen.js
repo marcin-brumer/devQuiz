@@ -32,9 +32,7 @@ class ResultScreen extends Component {
         <h1>Your Score:</h1>
         <h1>{score}%</h1>
         <h2>{scoreDescription}</h2>
-        <button
-          className={styles.ResetBtn}
-          onClick={this.props.loadWelcomeScreen}>
+        <button className={styles.ResetBtn} onClick={this.props.resetGame}>
           Try Again
         </button>
       </div>
@@ -48,7 +46,7 @@ const mapStateToProps = state => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadWelcomeScreen: () => dispatch(actionCreators.loadWelcomeScreen())
+  resetGame: () => dispatch(actionCreators.resetGame())
 });
 
 export default connect(

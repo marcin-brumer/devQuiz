@@ -55,9 +55,6 @@ const reducer = (state = initialState, action) => {
         return { ...state, phase: gamePhase.RESULT_SCREEN };
       }
 
-    case actionTypes.LOAD_WELCOME_SCREEN:
-      return { ...state, phase: gamePhase.WELCOME_SCREEN };
-
     case actionTypes.RESET_GAME:
       return initialState;
 

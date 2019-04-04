@@ -35,7 +35,3 @@ export const answerSelected = (index, event, questions, questionId) => {
 export const resetGame = () => ({
   type: actionTypes.RESET_GAME
 });
-
-export const loadWelcomeScreen = () => ({
-  type: actionTypes.LOAD_WELCOME_SCREEN
-});
