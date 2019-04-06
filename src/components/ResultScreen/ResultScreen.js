@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionCreators from "../../store/actions/actions";
+import Button from "../UI/Button/Button";
 import styles from "./ResultScreen.module.css";
 
 class ResultScreen extends Component {
@@ -32,9 +33,9 @@ class ResultScreen extends Component {
         <h1>Your Score:</h1>
         <h1>{score}%</h1>
         <h2>{scoreDescription}</h2>
-        <button className={styles.ResetBtn} onClick={this.props.resetGame}>
+        <Button btnColor="Blue" clicked={this.props.resetGame}>
           Try Again
-        </button>
+        </Button>
       </div>
     );
   }
