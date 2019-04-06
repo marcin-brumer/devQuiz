@@ -4,6 +4,7 @@ import * as actionCreators from "../../store/actions/actions";
 import Technologies from "./Technologies/Technologies";
 import styles from "./WelcomeScreen.module.css";
 import QuestionsSlider from "./QuestionsSlider/QuestionsSlider";
+import Button from "../UI/Button/Button";
 
 const welcomeScreen = props => {
   const [...techValues] = props.technologies.values();
@@ -15,19 +16,27 @@ const welcomeScreen = props => {
   });
   return (
     <>
-      <h1>Welcome to devQuiz</h1>
-      <h3>First select the technologies from which you want to make a quiz</h3>
+      <div className={styles.Padding}>
+        <h1>Welcome to devQuiz</h1>
+      </div>
+      <div className={styles.Padding}>
+        <h3>
+          First select the technologies from which you want to make a quiz
+        </h3>
+      </div>
       <Technologies />
-      <h3>and decide how many questions you want to answer</h3>
+      <div className={styles.Padding}>
+        <h3>and decide how many questions you want to answer</h3>
+      </div>
       <QuestionsSlider />
-      <button
-        className={styles.StartBtn}
-        onClick={() =>
+      <Button
+        clicked={() =>
           props.startGame(props.totalQuestions, props.technologies)
         }
-        disabled={!gameReady}>
+        disabled={!gameReady}
+        btnColor="Blue">
         Start
-      </button>
+      </Button>
     </>
   );
 };

@@ -1,0 +1,41 @@
+.Button {
+  display: block;
+  margin: 30px auto 0 auto;
+  padding: 10px 15px 10px 15px;
+  cursor: pointer;
+  font-size: 20px;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  letter-spacing: 2px;
+  outline: none;
+}
+
+.Blue {
+  background-color: #2f55a0;
+}
+
+.Blue:hover {
+  background-color: #5d83cf;
+}
+
+.Button:disabled {
+  background-color: #c7c6c6;
+  cursor: not-allowed;
+}
+
+.Button:not(:disabled) {
+  animation: enable 0.3s linear;
+}
+
+@keyframes enable {
+  0% {
+    transform: scale(1);
+  }
+  60% {
+    transform: scale(1.1);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
