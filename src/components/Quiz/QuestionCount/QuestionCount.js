@@ -10,7 +10,7 @@ const questionCount = props => (
 
 const mapStateToProps = state => {
   return {
-    totalQuestions: state.totalQuestions
+    totalQuestions: state.get("totalQuestions")
   };
 };
 export default connect(mapStateToProps)(questionCount);

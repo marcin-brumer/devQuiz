@@ -11,9 +11,10 @@ export function* rootSaga() {
 export function* startGameSaga(action) {
   const { technologies, totalQuestions } = action;
   const questions = [];
-  yield Object.keys(technologies).forEach(tech => {
-    if (technologies[tech]) {
-      questions.push(...questionsData[tech]);
+  const [...techKeys] = technologies.keys();
+  yield techKeys.forEach(key => {
+    if (technologies.get(key)) {
+      questions.push(...questionsData[key]);
     }
   });
   // Shuffles questions array and takes first {totalQuestions} amount
@@ -24,7 +25,7 @@ export function* startGameSaga(action) {
 export function* answerSelectedSaga(action) {
   const { index, event, questions, questionId } = action;
   const parentNode = event.target.parentNode;
-  const correctAnswer = questions[questionId].correct - 1;
+  const correctAnswer = questions.get(questionId).get("correct") - 1;
 
   if (index === correctAnswer) {
     // Prevent other answers from being clicked

@@ -7,8 +7,8 @@ import QuestionCount from "./QuestionCount/QuestionCount";
 import AnswerOption from "./AnswerOption/AnswerOption";
 
 const quiz = props => {
-  const currentQuestion = props.questions[props.questionId];
-  const answerOptions = currentQuestion.answers.map((answer, index) => {
+  const currentQuestion = props.questions.get(props.questionId);
+  const answerOptions = currentQuestion.get("answers").map((answer, index) => {
     return (
       <AnswerOption
         key={answer}
@@ -19,7 +19,6 @@ const quiz = props => {
       />
     );
   });
-
   return (
     <CSSTransitionGroup
       component="div"
@@ -31,8 +30,8 @@ const quiz = props => {
       <div key={props.questionId}>
         <QuestionCount questionId={props.questionId} />
         <Question
-          text={currentQuestion.question}
-          hasCode={currentQuestion.code}
+          text={currentQuestion.get("question")}
+          hasCode={currentQuestion.get("code")}
         />
         <div>{answerOptions}</div>
       </div>
@@ -41,8 +40,8 @@ const quiz = props => {
 };
 
 const mapStateToProps = state => ({
-  questions: state.questions,
-  questionId: state.questionId
+  questions: state.get("questions"),
+  questionId: state.get("questionId")
 });
 
 const mapDispatchToProps = dispatch => ({

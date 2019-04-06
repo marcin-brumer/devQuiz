@@ -21,35 +21,31 @@ const reducer = (state = initialState, action) => {
       return state.updateIn(["technologies", action.technology], tech => !tech);
 
     case actionTypes.TOTAL_QUESTIONS_SELECTED:
-      return { ...state, totalQuestions: action.value };
+      return state.set("totalQuestions", action.value);
 
     case actionTypes.START_GAME:
-      return {
-        ...state,
-        questions: action.questions,
-        phase: gamePhase.QUIZ_SCREEN
-      };
+      return state
+        .set("questions", fromJS(action.questions))
+        .set("phase", gamePhase.QUIZ_SCREEN);
 
     case actionTypes.CORRECT_ANSWER_SELECTED:
-      if (state.questionId <= state.totalQuestions - 2) {
-        return {
-          ...state,
-          score: state.score + 1,
-          questionId: state.questionId + 1
-        };
+      if (state.get("questionId") <= state.get("totalQuestions") - 2) {
+        return state
+          .set("score", state.get("score") + 1)
+          .set("questionId", state.get("questionId") + 1);
       } else {
-        return {
-          ...state,
-          score: state.score + 1,
-          phase: gamePhase.RESULT_SCREEN
-        };
+        return state
+          .set("score", state.get("score") + 1)
+          .set("phase", gamePhase.RESULT_SCREEN);
       }
 
     case actionTypes.WRONG_ANSWER_SELECTED:
-      if (state.questionId <= state.totalQuestions - 2) {
-        return { ...state, questionId: state.questionId + 1 };
+      if (state.get("questionId") <= state.get("totalQuestions") - 2) {
+        return state.set("questionId", state.get("questionId") + 1);
       } else {
-        return { ...state, phase: gamePhase.RESULT_SCREEN };
+        return state
+          .set("score", state.get("score") + 1)
+          .set("phase", gamePhase.RESULT_SCREEN);
       }
 
     case actionTypes.RESET_GAME:

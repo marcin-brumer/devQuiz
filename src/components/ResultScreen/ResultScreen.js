@@ -41,8 +41,8 @@ class ResultScreen extends Component {
 }
 
 const mapStateToProps = state => ({
-  totalQuestions: state.totalQuestions,
-  score: state.score
+  totalQuestions: state.get("totalQuestions"),
+  score: state.get("score")
 });
 
 const mapDispatchToProps = dispatch => ({
