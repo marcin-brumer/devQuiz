@@ -43,9 +43,7 @@ const reducer = (state = initialState, action) => {
       if (state.get("questionId") <= state.get("totalQuestions") - 2) {
         return state.set("questionId", state.get("questionId") + 1);
       } else {
-        return state
-          .set("score", state.get("score") + 1)
-          .set("phase", gamePhase.RESULT_SCREEN);
+        return state.set("phase", gamePhase.RESULT_SCREEN);
       }
 
     case actionTypes.RESET_GAME:
